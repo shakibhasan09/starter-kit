@@ -108,3 +108,7 @@ This starter kit includes the following dependencies:
 </ul>
 
 For a full list of dependencies, check the `package.json` file.
+
+## License
+
+This project is licensed under the MIT License - see the <a href="#">LICENSE</a> file for details.
