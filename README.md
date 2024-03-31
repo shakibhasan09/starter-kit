@@ -17,7 +17,7 @@ To install the dependencies, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/starter-kit.git
+    git clone https://github.com/shakibhasan09/starter-kit.git
     ```
 
 2. Navigate into the project directory:
@@ -28,7 +28,7 @@ To install the dependencies, follow these steps:
 
 3. Install dependencies:
     ```bash
-    npm install
+    pnpm install
     ```
 
 ## Usage
@@ -36,7 +36,7 @@ To install the dependencies, follow these steps:
 To start the development server, run:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 <br/>
@@ -44,7 +44,7 @@ npm run dev
 To build your project for production, run:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 <br/>
@@ -52,7 +52,7 @@ npm run build
 To lint your code, run:
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 <br/>
@@ -60,7 +60,7 @@ npm run lint
 To preview your production build locally, run:
 
 ```bash
-npm run preview
+pnpm run preview
 ```
 
 <br/>
@@ -70,25 +70,25 @@ npm run preview
 Run all test
 
 ```bash
-npm run test
+pnpm run test
 ```
 
 Run UI tests:
 
 ```bash
-npm run test:ui
+pnpm run test:ui
 ```
 
 Run tests in watch mode:
 
 ```bash
-npm run test:watch
+pnpm run test:watch
 ```
 
 Generate test coverage report:
 
 ```bash
-npm run test:coverage
+pnpm run test:coverage
 ```
 
 <br/>
@@ -111,4 +111,4 @@ For a full list of dependencies, check the `package.json` file.
 
 ## License
 
-This project is licensed under the MIT License - see the <a href="#">LICENSE</a> file for details.
+This project is licensed under the MIT License - see the <a href="#LICENSE">LICENSE</a> file for details.
