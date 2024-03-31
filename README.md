@@ -111,4 +111,4 @@ For a full list of dependencies, check the `package.json` file.
 
 ## License
 
-This project is licensed under the MIT License - see the <a href="#LICENSE">LICENSE</a> file for details.
+This project is licensed under the MIT License - see the <a href="?tab=Apache-2.0-1-ov-file">LICENSE</a> file for details.
