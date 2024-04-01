@@ -13,17 +13,59 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as authenticatedRouteImport } from './routes/__authenticated/route'
 
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
+const authenticatedDashboardLazyImport = createFileRoute(
+  '/__authenticated/dashboard',
+)()
+const authenticatedSettingsIndexLazyImport = createFileRoute(
+  '/__authenticated/settings/',
+)()
+const authenticatedProjectsIndexLazyImport = createFileRoute(
+  '/__authenticated/projects/',
+)()
 
 // Create/Update Routes
+
+const authenticatedRouteRoute = authenticatedRouteImport.update({
+  id: '/__authenticated',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const authenticatedDashboardLazyRoute = authenticatedDashboardLazyImport
+  .update({
+    path: '/dashboard',
+    getParentRoute: () => authenticatedRouteRoute,
+  } as any)
+  .lazy(() =>
+    import('./routes/__authenticated/dashboard.lazy').then((d) => d.Route),
+  )
+
+const authenticatedSettingsIndexLazyRoute = authenticatedSettingsIndexLazyImport
+  .update({
+    path: '/settings/',
+    getParentRoute: () => authenticatedRouteRoute,
+  } as any)
+  .lazy(() =>
+    import('./routes/__authenticated/settings/index.lazy').then((d) => d.Route),
+  )
+
+const authenticatedProjectsIndexLazyRoute = authenticatedProjectsIndexLazyImport
+  .update({
+    path: '/projects/',
+    getParentRoute: () => authenticatedRouteRoute,
+  } as any)
+  .lazy(() =>
+    import('./routes/__authenticated/projects/index.lazy').then((d) => d.Route),
+  )
 
 // Populate the FileRoutesByPath interface
 
@@ -33,11 +75,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/__authenticated': {
+      preLoaderRoute: typeof authenticatedRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/__authenticated/dashboard': {
+      preLoaderRoute: typeof authenticatedDashboardLazyImport
+      parentRoute: typeof authenticatedRouteImport
+    }
+    '/__authenticated/projects/': {
+      preLoaderRoute: typeof authenticatedProjectsIndexLazyImport
+      parentRoute: typeof authenticatedRouteImport
+    }
+    '/__authenticated/settings/': {
+      preLoaderRoute: typeof authenticatedSettingsIndexLazyImport
+      parentRoute: typeof authenticatedRouteImport
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexLazyRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexLazyRoute,
+  authenticatedRouteRoute.addChildren([
+    authenticatedDashboardLazyRoute,
+    authenticatedProjectsIndexLazyRoute,
+    authenticatedSettingsIndexLazyRoute,
+  ]),
+])
 
 /* prettier-ignore-end */
